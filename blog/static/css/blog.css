@@ -1,3 +1,52 @@
-h1 a {
+body {
+    background-image: url('logo_dark.jpg');
+}
+
+.main-title {
+    font-size: 46px;
     color: #FCA205;
+    font-family: 'Gloria Hallelujah';
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+/*_______POST______*/
+
+.post {
+    width: 50%;
+    margin: 0 auto;
+    font-family: 'Ubuntu Condensed';
+    border: 1px solid #464439;
+    border-radius: 5px;
+    padding: 1.5em;
+    margin-top: 20px;
+}
+
+#post-text {
+    color: #FCA205;
+}
+
+#post-publish-date {
+    margin-top: 20px;
+    font-family: 'Ubuntu Condensed';
+}
+
+.post h1 {
+    color: #FCA205;
+    font-family: 'Gloria Hallelujah';
+}
+
+
+/*_______FEEDBACK______*/
+
+.ui-widget-content {
+    font-family: 'Gloria Hallelujah';
+    box-shadow: 10px 10px 5px #464439;
+    width: 200px;
+    height: 200px;
+    padding: 0.5em;
+    font-size: 16px;
+    margin: 20px 100px 20px 100px;
+    position: absolute;
 }

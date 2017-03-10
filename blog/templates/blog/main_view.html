@@ -2,24 +2,55 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>From another mother</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gloria+Hallelujah|Ubuntu+Condensed">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function() {
+            $("#draggable").draggable();
+        });
+    </script>
+
+    <script>
+        function back() {
+            $('#draggable').css('background-color', '#FBE71C');
+        }
+        $(document).ready(function() {
+            back();
+        });
+    </script>
+
 </head>
 
 <body>
     <div>
-        <h1><a href="/">From another mother</a></h1>
+        <h1 class="main-title">From another mother</h1>
+        <div id="draggable" class="ui-widget-content" contenteditable="true">
+
+        </div>
+
+        {% for post in posts %}
+        <div class="post">
+            <h1>{{ post.title }}</h1>
+            <p id="post-text">{{ post.text|linebreaksbr }}</p>
+            <p id="post-publish-date">published: {{ post.published_date }}</p>
+
+        </div>
+        {% endfor %}
+
     </div>
 
-    {% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-    {% endfor %}
+
 </body>
 
 </html>
