@@ -25,28 +25,36 @@
         function back() {
             $('#draggable').css('background-color', '#FBE71C');
         }
-        $(document).ready(function() {
-            back();
-        });
     </script>
 
+    <script>
+        function placeDiv(x_pos, y_pos) {
+            var d = document.getElementById('draggable');
+            d.style.position = "absolute";
+            d.style.left = x_pos + 'px';
+            d.style.top = y_pos + 'px';
+        }
+    </script>
 </head>
 
 <body>
     <div>
         <h1 class="main-title">From another mother</h1>
-        <div id="draggable" class="ui-widget-content" contenteditable="true">
-
-        </div>
-
-        {% for post in posts %}
-        <div class="post">
-            <h1>{{ post.title }}</h1>
-            <p id="post-text">{{ post.text|linebreaksbr }}</p>
-            <p id="post-publish-date">published: {{ post.published_date }}</p>
-
+        {% for feedback in feedbacks %}
+        <div id="draggable" contenteditable="true">
+            <div class="ui-widget-content">{{ feedback.text }}</div>
         </div>
         {% endfor %}
+    </div>
+
+    {% for post in posts %}
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <p id="post-text">{{ post.text|linebreaksbr }}</p>
+        <p id="post-publish-date">Published: {{ post.published_date }}</p>
+
+    </div>
+    {% endfor %}
 
     </div>
 

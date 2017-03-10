@@ -17,12 +17,11 @@ class Post(models.Model):
         return self.title
 
 class Feedback(models.Model):
-    title = models.CharField(max_length=500)
-    text = models.TextField()
+    text = models.CharField(max_length=500)
     created_date = models.DateTimeField(default=timezone.now)
     x_position = models.IntegerField()
     y_position = models.IntegerField()
     active = models.BooleanField()
 
     def __str__(self):
-        return self.title
+        return self.text
