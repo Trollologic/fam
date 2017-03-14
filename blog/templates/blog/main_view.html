@@ -39,23 +39,37 @@
                 $("#" + myData[i].pk).draggable();
             }
         });
+
+        $(function() {
+            $("#new_feedback_draggable").draggable();
+            $('#new_feedback_draggable').css('background-color', '#FBE71C');
+        });
     </script>
 
     <script>
-        function back() {
-            $('#draggable').css('background-color', '#FBE71C');
-        }
+        $(document).ready(function() {
+            $("#new_feedback_draggable").focusout(function() {
+                var d = document.getElementById("new_feedback_draggable");
+
+            });
+        });
     </script>
 </head>
 
 <body>
     <div>
         <h1 class="main-title">From another mother</h1>
+
+
         {% for feedback in feedbacks %}
         <div id="{{ feedback.id }}">
             <div class="ui-widget-content">{{ feedback.text }}</div>
         </div>
         {% endfor %}
+
+        <div id="new_feedback_draggable" class="ui-widget-content" contenteditable="true">
+
+        </div>
     </div>
 
     {% for post in posts %}
