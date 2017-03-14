@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+
     <script>
         var myDjangoList = (("{{ js_feedbacks }}").replace(/&(l|g|quo)t;/g, function(a, b) {
             return {
@@ -50,7 +51,6 @@
         $(document).ready(function() {
             $("#new_feedback_draggable").focusout(function() {
                 var d = document.getElementById("new_feedback_draggable");
-
             });
         });
     </script>
