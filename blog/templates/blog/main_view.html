@@ -16,8 +16,24 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
+        var myDjangoList = (("{{ js_feedbacks }}").replace(/&(l|g|quo)t;/g, function(a, b) {
+            return {
+                l: '<',
+                g: '>',
+                quo: '"'
+            }[b];
+        }));
+
+        myDjangoList = myDjangoList.replace(/u'/g, '\'')
+        myDjangoList = myDjangoList.replace(/'/g, '\"')
+        myData = JSON.parse(myDjangoList);
         $(function() {
-            $("#draggable").draggable();
+
+            for (i = 0; i < myData.length; i++) {
+
+                $("#" + myData[i].pk).draggable();
+                $("#" + myData[i].pk).css('contenteditable', 'true');
+            }
         });
     </script>
 
@@ -41,8 +57,8 @@
     <div>
         <h1 class="main-title">From another mother</h1>
         {% for feedback in feedbacks %}
-        <div id="draggable" contenteditable="true">
-            <div class="ui-widget-content">{{ feedback.text }}</div>
+        <div id="{{ feedback.id }}" contenteditable="true">
+            <div class="ui-widget-content">{{ feedback.text }} {{ feedback.id }}</div>
         </div>
         {% endfor %}
     </div>
