@@ -28,11 +28,16 @@
         myDjangoList = myDjangoList.replace(/'/g, '\"')
         myData = JSON.parse(myDjangoList);
         $(function() {
-
             for (i = 0; i < myData.length; i++) {
 
+
+                var d = document.getElementById(myData[i].pk);
+                d.style.position = "absolute";
+                d.style.left = myData[i].fields.x_position + 'px';
+                d.style.top = myData[i].fields.y_position + 'px';
+
                 $("#" + myData[i].pk).draggable();
-                $("#" + myData[i].pk).css('contenteditable', 'true');
+
             }
         });
     </script>
@@ -42,23 +47,14 @@
             $('#draggable').css('background-color', '#FBE71C');
         }
     </script>
-
-    <script>
-        function placeDiv(x_pos, y_pos) {
-            var d = document.getElementById('draggable');
-            d.style.position = "absolute";
-            d.style.left = x_pos + 'px';
-            d.style.top = y_pos + 'px';
-        }
-    </script>
 </head>
 
 <body>
     <div>
         <h1 class="main-title">From another mother</h1>
         {% for feedback in feedbacks %}
-        <div id="{{ feedback.id }}" contenteditable="true">
-            <div class="ui-widget-content">{{ feedback.text }} {{ feedback.id }}</div>
+        <div id="{{ feedback.id }}">
+            <div class="ui-widget-content">{{ feedback.text }}</div>
         </div>
         {% endfor %}
     </div>
