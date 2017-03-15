@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles %} {% csrf_token %}
 <html>
 
 <head>
@@ -45,12 +45,55 @@
             $("#new_feedback_draggable").draggable();
             $('#new_feedback_draggable').css('background-color', '#FBE71C');
         });
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                    // Only send the token to relative URLs i.e. locally.
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            }
+        });
     </script>
 
     <script>
         $(document).ready(function() {
             $("#new_feedback_draggable").focusout(function() {
                 var d = document.getElementById("new_feedback_draggable");
+                var rect = d.getBoundingClientRect();
+                var data = {
+                    'text': d.innerHTML,
+                    'created_date': new Date().toLocaleString(),
+                    'x_position': rect.top,
+                    'y_position': rect.right,
+                    'active': true,
+                }
+
+                $.ajax({
+                    "type": "POST",
+                    "dataType": "json",
+                    "url": "/test/",
+                    "data": data,
+                    "success": function(result) {
+                        console.log(result);
+                    },
+                });
             });
         });
     </script>
