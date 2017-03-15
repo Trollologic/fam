@@ -79,9 +79,8 @@
                 var rect = d.getBoundingClientRect();
                 var data = {
                     'text': d.innerHTML,
-                    'created_date': new Date().toLocaleString(),
-                    'x_position': rect.top,
-                    'y_position': rect.right,
+                    'x_position': rect.right,
+                    'y_position': rect.top,
                     'active': true,
                 }
 
